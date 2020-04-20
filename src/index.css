@@ -1,13 +1,137 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #ffffe8;
+  color: #f3f3f3;
 }
+
+
+
+header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  background: #f3f3f3;
+  color: #040f0f;
+}
+
+header h3 {
+text-transform: capitalize;
+font-size: 1.8rem;
+padding: 30px 0 30px 5px;
+}
+
+header .user-text {
+  font-size: 20px;
+  padding-right: 20px;
+}
+
+#content {
+  width: 90vw;
+  margin: 0 auto;
+  padding: 40px;
+  background: #191923;
+}
+
+#register-form,
+#login-form {
+  max-width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px 20px;
+  border: 2px solid #199923;
+  border-radius: 10px;
+}
+
+#register-form{
+margin-top: 20px;
+}
+
+#register-form,
+#login-form h3 {
+  font-size: 30px;
+  letter-spacing: 0.5rem;
+}
+
+.divider {
+  width: 200px;
+  border: 2px solid #199923;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+#register-form form,
+#login-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+form input {
+  outline: none;
+  border: none;
+  background: transparent;
+  border-bottom: 3px solid #f5f3f5;
+  margin: 10px;
+  padding: 20px 0;
+}
+
+input::placeholder {
+  text-transform: capitalize;
+  font-size: 20px;
+  color: #f5f3f5;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  display: block;
+  padding: 10px 30px;
+  background: #f5f3f5;
+  border: none;
+  color: #040f0f;
+  text-transform: capitalize;
+  font-size: 20px;
+  margin: 30px 0 30px 0;
+  transition: background 2s ease, color 2s ease;
+}
+
+button:hover {
+  background: transparent;
+  color: #f5f3f5;
+  border: 1px solid #f5f3f5;
+  cursor: pointer;
+}
+
+.non-member-text {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+@media screen and (min-width: 992px) {
+  .user {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+
+  #login-form {
+    flex: 0 0 calc(50% - 1);
+    align-self: center;
+  }
+}
+
