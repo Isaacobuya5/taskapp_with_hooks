@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import Header from "./components/Header";
 import Login from "./components/Login";
@@ -6,15 +6,20 @@ import Register from "./components/Register";
 import AddTask from "./components/AddTask";
 import ListTasks from "./components/ListTasks";
 
+
+
 function App() {
+    
+  // user state
+  const [ user, setUser ] = useState('');
   return (
     <React.Fragment>
-    <Header />
+    <Header user={user} setUser={setUser}/>
     <section id="content">
-    <section className="user">
-    <Login />
-    <Register />
-    </section>
+    { !user ? <section className="user">
+    <Login setUser={setUser}/>
+    <Register setUser={setUser}/>
+    </section> : ''}
     <AddTask />
     <ListTasks />
     </section>
