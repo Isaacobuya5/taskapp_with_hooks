@@ -7,11 +7,31 @@ import AddTask from "./components/AddTask";
 import ListTasks from "./components/ListTasks";
 
 
+const defaultTasks = [
+  {
+    name: "Coding",
+    description: "Coding in javascript",
+    completed: true
+  },
+  {
+    name: "Eating",
+    description: "Eat sukuma wiki for lunch",
+    completed: false
+  },
+  {
+    name: "Walking",
+    description: "Walking as part of exercise",
+    completed: false
+  }
+]
 
 function App() {
     
   // user state
-  const [ user, setUser ] = useState('');
+  const [ user, setUser ] = useState('Isaac');
+  // tasks state
+
+  const [tasks, setTasks] = useState(defaultTasks);
   return (
     <React.Fragment>
     <Header user={user} setUser={setUser}/>
@@ -19,9 +39,13 @@ function App() {
     { !user ? <section className="user">
     <Login setUser={setUser}/>
     <Register setUser={setUser}/>
-    </section> : ''}
-    <AddTask />
-    <ListTasks />
+    </section> : (
+    <React.Fragment>
+    <AddTask tasks={tasks} setTasks={setTasks}/>
+    <ListTasks tasks={tasks} />
+    </React.Fragment>
+    )
+  }
     </section>
     </React.Fragment>
   );

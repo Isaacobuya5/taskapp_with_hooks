@@ -22,7 +22,6 @@ const Register = ({setUser}) => {
   // submit and change state
   function handleSubmit(event) {
     event.preventDefault();
-    alert(`${username}`)
     setUser(username);
 }
 

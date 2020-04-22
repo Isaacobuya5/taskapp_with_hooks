@@ -20,6 +20,9 @@ header {
   font-weight: bold;
   background: #f3f3f3;
   color: #040f0f;
+  position: fixed;
+  z-index: 10;
+  top: 0;
 }
 
 header h3 {
@@ -41,10 +44,13 @@ header .user-text {
   margin: 0 auto;
   padding: 40px;
   background: #191923;
+  margin-top: 120px;
 }
 
 #register-form,
-#login-form {
+#login-form,
+#add-task-form,
+#display-tasks {
   max-width: 50%;
   margin: 0 auto;
   text-align: center;
@@ -57,10 +63,12 @@ header .user-text {
 margin-top: 20px;
 }
 
-#register-form,
-#login-form h3 {
+#register-form h3,
+#login-form h3,
+#add-task-form h3 {
   font-size: 30px;
   letter-spacing: 0.5rem;
+  text-transform: capitalize;
 }
 
 .divider {
@@ -71,13 +79,15 @@ margin-top: 20px;
 }
 
 #register-form form,
-#login-form form {
+#login-form form,
+#add-task-form form {
   display: flex;
   flex-direction: column;
 }
 
 
-form input {
+form input,
+form textarea {
   outline: none;
   border: none;
   background: transparent;
@@ -90,6 +100,14 @@ form input {
   text-align: center;
 }
 
+.input-checkbox {
+  padding: 10px;
+  align-self: flex-start;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+textarea::placeholder,
 input::placeholder {
   text-align: left;
   text-transform: capitalize;
@@ -155,4 +173,81 @@ button:hover {
   color: #191919 !important;
   color: transparent;
   border: 1px solid #191923;
+}
+
+#add-task-form {
+  max-width: 100%;
+}
+
+#add-task-form .divider {
+width: 40%;
+}
+
+#display-tasks {
+  max-width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* display: flex;
+  justify-content: center; */
+}
+
+
+table {
+  flex: 0 0 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: center;
+  font-size: 18px;
+  /* margin: 0 auto; */
+}
+
+thead {
+  /* flex: 0 0 100%; */
+  background: #f3f3f3;
+  color: #191923;
+  font-size: 1rem;
+  text-transform: uppercase;
+  border: 1px solid #f5f3f5;
+  border-top-left-radius: 10px;
+}
+
+table tr {
+  border-right: 1px solid #f3f3f3;
+  border-left: 1px solid #f3f3f3;
+}
+
+thead tr th{
+  flex: 0 0 100px;
+  text-align: center;
+}
+
+
+
+th,
+td {
+text-align: center;
+padding: 15px 0;
+/* padding: 15px 10px; */
+}
+
+
+th:last-child {
+  border-top-right-radius: 5px;
+}
+
+td {
+  border-bottom:1px solid #f3f3f3;
+}
+
+@media screen and (min-width: 992px) {
+  #add-task-form,
+  #display-tasks {
+    max-width: 80%;
+  }
+}
+
+.actions-button {
+
 }
