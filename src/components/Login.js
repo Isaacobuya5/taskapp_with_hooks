@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
+import { loginUser } from "../actions/user.actions";
 
-const Login = ({setUser}) => {
+const Login = ({dispatch}) => {
 
     // state for form inputs
     const [login, setLogin] = useState({
@@ -20,7 +21,9 @@ const Login = ({setUser}) => {
 
     function handleSubmit(event) {
         event.preventDefault();
-        setUser(email);
+        alert("hello");
+        // setUser(email);
+        dispatch(loginUser(login));
     }
 
 

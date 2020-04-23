@@ -1,12 +1,15 @@
 import React from 'react';
 
-const Logout = ({setUser}) => (
+import { logoutUser } from "../actions/user.actions";
+
+const Logout = ({dispatch}) => (
     <button 
     type="submit" 
     className="logout-btn"
     onClick={(event) => {
        event.preventDefault();
-       setUser('');
+    //    setUser('');
+    dispatch(logoutUser());
     }}
     >
     Logout

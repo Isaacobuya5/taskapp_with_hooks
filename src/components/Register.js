@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
-const Register = ({setUser}) => {
+import { registerUser } from "../actions/user.actions";
+
+const Register = ({dispatch}) => {
   // state for register
   const [registeredUser, setRegisteredUser] = useState({
     username: "",
@@ -22,7 +24,13 @@ const Register = ({setUser}) => {
   // submit and change state
   function handleSubmit(event) {
     event.preventDefault();
-    setUser(username);
+    const newUser = {
+      username, 
+      email, 
+      password, 
+      confirmPassword
+    };
+    dispatch(registerUser(newUser));
 }
 
   const { username, email, password, confirmPassword } = registeredUser;

@@ -1,10 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useReducer} from 'react';
 
 import Header from "./components/Header";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import AddTask from "./components/AddTask";
 import ListTasks from "./components/ListTasks";
+
+// import the reducer
+import { userReducer } from "./reducers/user.reducer";
+// import 
+import { taskReducer } from "./reducers/task.reducer";
 
 
 const defaultTasks = [
@@ -27,22 +32,33 @@ const defaultTasks = [
 
 function App() {
     
-  // user state
-  const [ user, setUser ] = useState('Isaac');
-  // tasks state
+  
+  // const [ user, setUser ] = useState('Isaac');
 
-  const [tasks, setTasks] = useState(defaultTasks);
+  // managing user state with useReducer hook
+  const [loggedUser, dispatch ] = useReducer(userReducer, {
+    user: ""
+  });
+
+  // managing tasks state with useReducer
+  const [tasks, dispatchTasks] = useReducer(taskReducer, defaultTasks);
+
+  const { user } = loggedUser;
+
+
+
+  // const [tasks, setTasks] = useState(defaultTasks);
   return (
     <React.Fragment>
-    <Header user={user} setUser={setUser}/>
+    <Header user={user} dispatch={dispatch}/>
     <section id="content">
     { !user ? <section className="user">
-    <Login setUser={setUser}/>
-    <Register setUser={setUser}/>
+    <Login dispatch={dispatch}/>
+    <Register dispatch={dispatch}/>
     </section> : (
     <React.Fragment>
-    <AddTask tasks={tasks} setTasks={setTasks}/>
-    <ListTasks tasks={tasks} />
+    <AddTask dispatch={dispatchTasks}/>
+    <ListTasks tasks={tasks} dispatch={dispatchTasks} />
     </React.Fragment>
     )
   }

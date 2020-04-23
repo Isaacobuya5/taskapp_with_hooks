@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-const AddTask = ({ tasks, setTasks }) => {
+import { addTask } from "../actions/task.actions";
+
+const AddTask = ({ dispatch }) => {
   const [task, setTask] = useState({
     taskName: "",
     taskDescription: "",
@@ -32,10 +34,11 @@ const AddTask = ({ tasks, setTasks }) => {
         completed: isComplete
     };
 
-    setTasks([
-        ...tasks,
-        newTask
-    ]);
+    // setTasks([
+    //     ...tasks,
+    //     newTask
+    // ]);
+    dispatch(addTask(newTask));
     // clear input fields after submitting task
     setTask({
         ...task,
