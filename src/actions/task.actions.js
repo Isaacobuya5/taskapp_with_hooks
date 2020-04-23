@@ -13,3 +13,10 @@ export const deleteTask = (task) => {
         task
     }
 }
+
+export const markTaskComplete = (task) => {
+    return {
+        type: actionTypes.MARK_TASK_COMPLETE,
+        task
+    }
+}

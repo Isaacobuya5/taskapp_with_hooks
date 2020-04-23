@@ -1,7 +1,7 @@
 import React from "react";
 
 import Button from "./Button";
-import { deleteTask } from "../actions/task.actions";
+import { markTaskComplete, deleteTask } from "../actions/task.actions";
 
 const Task = ({ task, number, dispatch }) => (
   <tr>
@@ -10,7 +10,7 @@ const Task = ({ task, number, dispatch }) => (
     <td>{task.description}</td>
     <td>{task.completed.toString()}</td>
     <td className="actions-button">
-      <Button value="Edit" />
+      <Button value="Edit" dispatch={dispatch} task={task} action={markTaskComplete}/>
     </td>
     <td className="actions-button">
       <Button value="Delete" dispatch={dispatch} task={task} action={deleteTask}/>
