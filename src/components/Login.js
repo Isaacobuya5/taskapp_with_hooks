@@ -21,8 +21,6 @@ const Login = ({dispatch}) => {
 
     function handleSubmit(event) {
         event.preventDefault();
-        alert("hello");
-        // setUser(email);
         dispatch(loginUser(login));
     }
 

@@ -8,10 +8,7 @@ export const userReducer = (state , action) => {
                 user: action.user
             }
         case actionTypes.LOGOUT_USER:
-            return {
-                ...state,
-                user: ""
-            }
+            return '';
         case actionTypes.REGISTER_USER:
             return {
                 ...state,

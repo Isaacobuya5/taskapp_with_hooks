@@ -7,9 +7,10 @@ import AddTask from "./components/AddTask";
 import ListTasks from "./components/ListTasks";
 
 // import the reducer
-import { userReducer } from "./reducers/user.reducer";
+// import { userReducer } from "./reducers/user.reducer";
 // import 
-import { taskReducer } from "./reducers/task.reducer";
+// import { taskReducer } from "./reducers/task.reducer";
+import { rootReducer } from "../src/reducers/rootReducer";
 
 
 const defaultTasks = [
@@ -36,16 +37,20 @@ function App() {
   // const [ user, setUser ] = useState('Isaac');
 
   // managing user state with useReducer hook
-  const [loggedUser, dispatch ] = useReducer(userReducer, {
-    user: ""
-  });
+  // const [loggedUser, dispatch ] = useReducer(userReducer, {
+  //   user: ""
+  // });
 
   // managing tasks state with useReducer
-  const [tasks, dispatchTasks] = useReducer(taskReducer, defaultTasks);
+  // const [tasks, dispatchTasks] = useReducer(taskReducer, defaultTasks);
 
-  const { user } = loggedUser;
+  // managing both reducers with one useReducer function
+  const [state, dispatch] = useReducer(rootReducer, {
+    user: '',
+    tasks: defaultTasks
+  })
 
-
+const { user, tasks } = state;
 
   // const [tasks, setTasks] = useState(defaultTasks);
   return (
@@ -57,8 +62,8 @@ function App() {
     <Register dispatch={dispatch}/>
     </section> : (
     <React.Fragment>
-    <AddTask dispatch={dispatchTasks}/>
-    <ListTasks tasks={tasks} dispatch={dispatchTasks} />
+    <AddTask dispatch={dispatch}/>
+    <ListTasks tasks={tasks} dispatch={dispatch} />
     </React.Fragment>
     )
   }
