@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Logout from "./Logout";
 
-const Header = ({user, dispatch}) => {
-// let loggedInUser = user ? user : 'guest'
+import { StateContext } from "../contexts/contexts";
 
+const Header = () => {
+
+const { state } = useContext(StateContext);
+
+const { user } = state;
 
 return (
     <header>
@@ -12,7 +16,7 @@ return (
     Welcome {user ? (
 <React.Fragment>{user.user.email}</React.Fragment>
     ) : "guest"}
-    {user ? <Logout dispatch={dispatch}/> : ''}
+    {user ? <Logout /> : ''}
     </span>
     </header>
 );

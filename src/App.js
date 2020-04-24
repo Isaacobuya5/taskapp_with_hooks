@@ -11,6 +11,7 @@ import ListTasks from "./components/ListTasks";
 // import 
 // import { taskReducer } from "./reducers/task.reducer";
 import { rootReducer } from "../src/reducers/rootReducer";
+import { StateContext } from "./contexts/contexts";
 
 
 const defaultTasks = [
@@ -54,12 +55,13 @@ const { user, tasks } = state;
 
   // const [tasks, setTasks] = useState(defaultTasks);
   return (
+    <StateContext.Provider value={{ state, dispatch }}>
     <React.Fragment>
-    <Header user={user} dispatch={dispatch}/>
+    <Header />
     <section id="content">
     { !user ? <section className="user">
-    <Login dispatch={dispatch}/>
-    <Register dispatch={dispatch}/>
+    <Login />
+    <Register />
     </section> : (
     <React.Fragment>
     <AddTask dispatch={dispatch}/>
@@ -69,6 +71,7 @@ const { user, tasks } = state;
   }
     </section>
     </React.Fragment>
+    </StateContext.Provider>
   );
 }
 

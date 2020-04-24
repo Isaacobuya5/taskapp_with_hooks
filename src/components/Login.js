@@ -1,8 +1,11 @@
-import React,{useState} from 'react';
+import React,{useState, useContext} from 'react';
 import { loginUser } from "../actions/user.actions";
 
-const Login = ({dispatch}) => {
+import { StateContext } from "../contexts/contexts";
 
+const Login = () => {
+
+    const { dispatch } = useContext(StateContext);
     // state for form inputs
     const [login, setLogin] = useState({
         email: '',
