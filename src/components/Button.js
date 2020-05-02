@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useResource } from "react-request-hook";
 import { StateContext } from "../contexts/contexts";
 
 
 const Button = ({value, task, action}) => {
+
+const [currentTask, setCurrentTask] = useState(task);
 
 const { dispatch } = useContext(StateContext);
 
@@ -14,11 +16,22 @@ const [, deleteTask] = useResource(() => ({
 }));
 
 // hook to edit task in db
-const [, editTask] = useResource((edittedTask) => ({
+const [edit , editTask] = useResource((edittedTask) => ({
     url: `/tasks/${task.id}`,
-    method: "put",
-    data: edittedTask
+    method: "patch",
+    data: {completed: edittedTask.completed}
 }));
+
+useEffect(() => {
+    if (edit && edit.error) {
+        console.log("could not edit");
+        return;
+    }
+
+    if (edit && edit.data) {
+        dispatch(action(currentTask));
+    }
+},[currentTask]);
 
 return (
     value && value === 'Delete' ? (
@@ -34,9 +47,14 @@ return (
         type="submit"
         style={{ margin: 0, display: "inline-block"}}
         onClick={() => {
+            // set the completed state of current task
+            setCurrentTask({
+                ...currentTask,
+                completed: !currentTask.completed
+            });
             // edit in db
-            editTask(task);
-            dispatch(action(task));
+            editTask(currentTask);
+            console.log(edit.data);
         }}>{value}</button>)
     )
 }
