@@ -8,6 +8,8 @@ export const taskReducer = (state = [], action) => {
                 ...state,
                 action.task
             ];
+        case actionTypes.FETCH_TASKS:
+            return action.tasks;
         case actionTypes.DELETE_TASK:
             return state.filter(task => task.name !== action.task.name);
         case actionTypes.MARK_TASK_COMPLETE:

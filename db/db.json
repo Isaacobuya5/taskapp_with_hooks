@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "Isaacobuya5@yahoo.com",
+      "password": "Phestustoma5"
+    }
+  ],
+  "tasks": [
+    {
+      "name": "Driving",
+      "description": "drive my car",
+      "completed": true,
+      "id": 1
+    }
+  ]
+}

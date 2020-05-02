@@ -1,15 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
+
+import { useResource } from "react-request-hook";
 
 import { addTask } from "../actions/task.actions";
+import { StateContext } from "../contexts/contexts";
 
-const AddTask = ({ dispatch }) => {
+const AddTask = () => {
   const [task, setTask] = useState({
     taskName: "",
     taskDescription: "",
   });
 
-  // completed state of task
-  const [isComplete, setIsComplete] = useState(false);
+    // completed state of task
+    const [isComplete, setIsComplete] = useState(false);
+
+  const { taskName, taskDescription } = task;
+  // hook for adding a task
+  const [anotherTask, saveTask] = useResource((taskName, taskDescription, isComplete) => ({
+       url: "/tasks",
+       method: "post",
+       data: {
+         name: taskName,
+         description: taskDescription,
+         completed: isComplete
+       }
+  }))
+
+  console.log(anotherTask);
+  const { dispatch } = useContext(StateContext);
+
+
+  useEffect(() => {
+    if (anotherTask && anotherTask.error) {
+      console.log("unable to create a new task")
+      return;
+    }
+    if (anotherTask && anotherTask.data) {
+      // dispatch new task to state
+      dispatch(addTask(anotherTask.data));
+    }
+  },[anotherTask]);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -34,23 +64,21 @@ const AddTask = ({ dispatch }) => {
         completed: isComplete
     };
 
-    // setTasks([
-    //     ...tasks,
-    //     newTask
-    // ]);
-    dispatch(addTask(newTask));
+    // post to server
+    const { name, description, completed } = newTask;
+
+    saveTask(name, description, completed);
     // clear input fields after submitting task
     setTask({
         ...task,
         taskName: '',
-        taskDescription: ''
+        taskDescription: '',
     });
 
     // set back completed to false
-    setIsComplete(!isComplete);
+    setIsComplete(false);
   };
 
-  const { taskName, taskDescription } = task;
 
   return (
     <article id="add-task-form">

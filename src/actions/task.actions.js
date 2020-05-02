@@ -20,3 +20,10 @@ export const markTaskComplete = (task) => {
         task
     }
 }
+
+export const fetchTasks = (tasks) => {
+    return {
+        type: actionTypes.FETCH_TASKS,
+        tasks
+    }
+}

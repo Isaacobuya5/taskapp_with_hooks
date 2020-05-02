@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useContext } from 'react';
 
 import Task from "./Task";
-
-const ListTasks = ({ tasks, dispatch }) => (
+import { StateContext } from "../contexts/contexts";
+const ListTasks = () => {
+    const { state } = useContext(StateContext); 
+    const { tasks } = state;
+return (
     <section id="display-tasks">
     {tasks.length > 0 ? 
     (<table>
@@ -18,12 +21,12 @@ const ListTasks = ({ tasks, dispatch }) => (
          </thead>
          <tbody>
              {tasks.map((task, index) => (
-                 <Task key={index} task={task} number={index + 1} dispatch={dispatch}/>
+                 <Task key={index} task={task} number={index + 1} />
              ))}
          </tbody>
      </table>
     ) : "No task available.Please add a new task"};
     </section>
 );
-
+             }
 export default ListTasks;
